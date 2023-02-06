@@ -1,7 +1,7 @@
 package transport;
 
-public class Car {
-    private static String defaultBrand = "default" ;
+public class Car extends Transport {
+    private static String defaultBrand = "default";
     private static String defaultModel = "default";
     private static double defaultEngineVolume = 1.5;
     private static String defaultColor = "white";
@@ -14,15 +14,7 @@ public class Car {
     //private static String defaulttypeBody;
 
 
-    private final String brand;
-    private final String model;
     private double engineVolume;
-
-    private String color;
-    private final int productionYear;
-    private final String productionCountry;
-
-
     private String transmission;
     private final String typeBody;
     private String licensePlate;
@@ -32,19 +24,15 @@ public class Car {
 
 
     public Car(String brand, String model, double engineVolume, String color, int productionYear,
-               String productionCountry, String transmission, String typeBody, String licensePlate, int sitsNumber, boolean isTyresWinter, Key key) { //добавили в конструктор поле класса Key
+               String productionCountry, int maxSpeed, String transmission, String typeBody, String licensePlate, int sitsNumber, boolean isTyresWinter, Key key) { //добавили в конструктор поле класса Key
 
-        this.brand = brand == null || brand.isEmpty() ? defaultBrand : brand;
-        this.model = model == null || model.isEmpty() ? defaultModel : model;
-        this.productionCountry = productionCountry == null || productionCountry.isEmpty() ? defaultProductionCountry : productionCountry;
+        super(brand, model, productionYear, productionCountry, color, maxSpeed);
         this.engineVolume = engineVolume <= 0 ? defaultEngineVolume : engineVolume;
-        this.color = color == null || color.isEmpty() ? defaultColor : color;
-        this.productionYear = productionYear <= 0 ? defaultProductionYear : productionYear;
         this.transmission = transmission == null || transmission.isEmpty() ? defaultTransmission : transmission;
         this.typeBody = typeBody == null || typeBody.isEmpty() ? defaultTypeBody : typeBody;
         this.licensePlate = licensePlate == null || licensePlate.isEmpty() ? defaultLicensePlate : licensePlate;
         this.seatsNumber = sitsNumber <= 0 ? defaultSeatsNumber : sitsNumber;
-        this.isTyresWinter = isTyresWinter ;
+        this.isTyresWinter = isTyresWinter;
         setKey(key);
 
     }
@@ -54,35 +42,17 @@ public class Car {
     }
 
     public void setKey(Key key) {
-        if (key == null){
-            key = new Key(false,false);
+        if (key == null) {
+            key = new Key(false, false);
         }
         this.key = key;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
 
     public double getEngineVolume() {
         return engineVolume;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-    public String getProductionCountry() {
-        return productionCountry;
-    }
 
     public String getTransmission() {
         return transmission;
@@ -108,10 +78,6 @@ public class Car {
         this.engineVolume = engineVolume;
     }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public void setTransmission(String transmission) {
         this.transmission = transmission;
     }
@@ -134,34 +100,30 @@ public class Car {
     }
 
 
-
     @Override
     public String toString() {
-        return
-                "Марка: " + brand + ", " +
-                " Модель: " + model + ", " +
+        return super.toString() + ", " +
+
                 " Объем двигателя: " + engineVolume + ", " +
-                " Цвет кузова: " + color + ", " +
-                " Год производства: " + productionYear + ", " +
-                " Страна сборки: " + productionCountry + ", " +
                 " Коробка передач: " + transmission + ", " +
                 " Тип кузова: " + typeBody + ", " +
                 " Регистрационный номер: " + licensePlate + ", " +
                 " Количество мест: " + seatsNumber + ", " +
-                " Резина: " + (isTyresWinter? "winter": "summer") + " " +
-                key ;
+                " Резина: " + (isTyresWinter ? "winter" : "summer") + " " +
+                key;
     }
-    public static class Key{
+
+    public static class Key {
         private final boolean remoteEngineStart;
         private final boolean keylessEntry;
 
 
-
-        public Key (boolean remoteEngineStart, boolean keylessEntry){
+        public Key(boolean remoteEngineStart, boolean keylessEntry) {
             this.keylessEntry = keylessEntry;
             this.remoteEngineStart = remoteEngineStart;
 
         }
+
         public boolean isKeylessEntry() {
             return keylessEntry;
         }
@@ -173,8 +135,8 @@ public class Car {
         @Override
         public String toString() {
             return
-                    "Удаленный запуск двигателя: " + (remoteEngineStart? "да": "нет") +
-                    ", Бесключевой доступ: " + (keylessEntry ? "да": "нет")
+                    "Удаленный запуск двигателя: " + (remoteEngineStart ? "да" : "нет") +
+                            ", Бесключевой доступ: " + (keylessEntry ? "да" : "нет")
                     ;
         }
     }
