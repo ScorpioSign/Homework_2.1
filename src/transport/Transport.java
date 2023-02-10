@@ -1,26 +1,29 @@
 package transport;
 
-public class Transport {
+public abstract class Transport<T extends Driver>  {
     private static String defaultBrand = "default" ;
     private static String defaultModel = "default";
-    private static String defaultColor = "white";
-    private static int defaultProductionYear = 2000;
-    private static String defaultProductionCountry = "default";
-    private static int defaultMaxSpeed = 150;
+        private static double defaultEngineVolume = 1.5;
     private final String brand;
     private final String model;
-    private final int productionYear;
-    private final String productionCountry;
-    private String color;
-    private int maxSpeed;
+    private double engineVolume;
+    private T driver;
 
-    public Transport(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
+
+    public Transport(String brand, String model,double engineVolume, T driver) {
         this.brand = (isBrandEmpty(brand)) ? defaultBrand : brand;
         this.model = (isModelEmpty(model)) ? defaultModel : model;
-        this.productionYear = productionYear <= 0 ? defaultProductionYear : productionYear;
-        this.productionCountry = (isProductionCountryEmpty(productionCountry)) ? defaultProductionCountry : productionCountry;
-        this.color = (isColorEmpty(color)) ? defaultColor : color;
-        this.maxSpeed = maxSpeed <= 150 ? defaultMaxSpeed : maxSpeed;
+        this.engineVolume = engineVolume <= 0 ? defaultEngineVolume : engineVolume;
+        setDriver(driver);
+
+    }
+
+    public T getDriver() {
+        return driver;
+    }
+
+    public void setDriver(T driver) {
+        this.driver = driver;
     }
 
     public String getBrand() {
@@ -30,50 +33,29 @@ public class Transport {
     public String getModel() {
         return model;
     }
-
-    public int getProductionYear() {
-        return productionYear;
+    public double getEngineVolume() {
+        return engineVolume;
     }
+    public abstract void startMoving();
+    public abstract void finishMoving();
 
-    public String getProductionCountry() {
-        return productionCountry;
-    }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
     private boolean isBrandEmpty(String brand){
         return brand  == null || brand.isEmpty();
     }
     private boolean isModelEmpty(String model){
         return model  == null || model.isEmpty();
     }
-    private boolean isProductionCountryEmpty(String productionCountry){
-        return productionCountry  == null || productionCountry.isEmpty();
+    public void setEngineVolume(double engineVolume) {
+        this.engineVolume = engineVolume;
     }
-    private boolean isColorEmpty(String color){
-        return color == null || color.isEmpty();
-    }
+
+
 
     @Override
     public String toString() {
         return "Марка: " + brand + ", " +
                 " Модель: " + model + ", " +
-                " Цвет кузова: " + color + ", " +
-                " Год производства: " + productionYear + ", " +
-                " Страна сборки: " + productionCountry + ", " +
-                " Максимальная скорость: " + maxSpeed;
+                " Объем двигателя: " + engineVolume + driver ;
     }
 }
