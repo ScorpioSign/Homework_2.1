@@ -10,6 +10,7 @@ public abstract class Transport<T extends Driver>  {
     private T driver;
 
 
+
     public Transport(String brand, String model,double engineVolume, T driver) {
         this.brand = (isBrandEmpty(brand)) ? defaultBrand : brand;
         this.model = (isModelEmpty(model)) ? defaultModel : model;
@@ -36,8 +37,13 @@ public abstract class Transport<T extends Driver>  {
     public double getEngineVolume() {
         return engineVolume;
     }
+
+    public abstract Type getType();
+
+
     public abstract void startMoving();
     public abstract void finishMoving();
+       public abstract void printType();
 
 
     private boolean isBrandEmpty(String brand){
