@@ -14,11 +14,10 @@ public abstract class Driver {
 
     @Override
     public String toString() {
-        return "Driver{" +
-                "name='" + name + '\'' +
-                ", isLicense=" + isLicense +
-                ", experience=" + experience +
-                '}';
+        return " Водитель: " +
+                "имя: " + name +
+                ", наличие лицензии: " + isLicense +
+                ", experience: " + experience;
     }
 
     public String getName() {
