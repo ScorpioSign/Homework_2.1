@@ -1,6 +1,6 @@
 package transport;
 
-public class Bus extends Transport <DriverD> implements Competitive {
+public class Bus extends Transport<DriverD> implements Competitive {
     private CapacityType capacityType;
     private Type type;
 
@@ -12,40 +12,53 @@ public class Bus extends Transport <DriverD> implements Competitive {
     public void setType(Type type) {
         this.type = type;
     }
+
     @Override
-    public Type getType(){
+    public Type getType() {
         return Type.BUS;
     }
 
     public CapacityType getCapacityType() {
         return capacityType;
     }
-    @Override
-    public void startMoving(){
-        System.out.println("автобус марки " + getBrand() +"  начал движение");
-    };
-    @Override
-    public void finishMoving(){
-        System.out.println("автобус марки " + getBrand() +"  закончил движение");
 
-    };
+    @Override
+    public void startMoving() {
+        System.out.println("автобус марки " + getBrand() + "  начал движение");
+    }
 
-    public void pitstop(){
+    ;
+
+    @Override
+    public void finishMoving() {
+        System.out.println("автобус марки " + getBrand() + "  закончил движение");
+
+    }
+
+    ;
+
+    public void pitstop() {
         System.out.println("pitstop у автобуса");
     }
 
-    public void bestLapTime(){
+    public void bestLapTime() {
         System.out.println("лучшее время круга у автобуса");
     }
 
-    public void maxSpeed(){
+    public void maxSpeed() {
         System.out.println("максимальная скорость у автобуса");
     }
+
+    @Override
+    public void getDiagnosed() throws TransportTypeException {
+        throw new TransportTypeException("Автобусы диагностику проходить не должны");
+    }
+
     @Override
     public void printType() {
-        if (getType() == null){
+        if (getType() == null) {
             System.out.println("Данных по транспортному средству недостаточно");
-        }else {
+        } else {
             System.out.println("Тип транспортного средства: " + getType());
         }
 
@@ -57,6 +70,7 @@ public class Bus extends Transport <DriverD> implements Competitive {
                 " Модель: " + getModel() + ", " +
                 " Объем двигателя: " + getEngineVolume() + getDriver() + getCapacityType();
     }
+
     enum CapacityType {
         VERY_LITTLE(0, 10),
         LITTLE(11, 25),

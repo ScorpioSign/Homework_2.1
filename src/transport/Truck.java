@@ -1,6 +1,6 @@
 package transport;
 
-public class Truck extends Transport <DriverC> implements Competitive {
+public class Truck extends Transport<DriverC> implements Competitive {
     private LoadCapacity loadCapacity;
     private Type type;
 
@@ -16,18 +16,19 @@ public class Truck extends Transport <DriverC> implements Competitive {
     public LoadCapacity getLoadCapacity() {
         return loadCapacity;
     }
+
     @Override
     public void startMoving() {
         System.out.println("грузовой автомобиль марки " + getBrand() + "  начал движение");
     }
 
     ;
+
     @Override
     public void finishMoving() {
         System.out.println("грузовой автомобиль марки " + getBrand() + "  закончил движение");
 
     }
-
 
 
     public void pitstop() {
@@ -41,15 +42,22 @@ public class Truck extends Transport <DriverC> implements Competitive {
     public void maxSpeed() {
         System.out.println("максимальная скорость у грузового автомобиля");
     }
+
     @Override
-    public Type getType(){
+    public void getDiagnosed() {
+        System.out.println("Грузовому автомобилю необходимо пройти диагностику");
+    }
+
+    @Override
+    public Type getType() {
         return Type.TRUCK;
     }
+
     @Override
     public void printType() {
-        if (getType() == null){
+        if (getType() == null) {
             System.out.println("Данных по транспортному средству недостаточно");
-        }else {
+        } else {
             System.out.println("Тип транспортного средства: " + getType());
         }
     }
@@ -86,7 +94,7 @@ public class Truck extends Transport <DriverC> implements Competitive {
             if (startMass == 0) {
                 return " Грузоподъемность до "
                         + finishMass + " тонн";
-            }else if(finishMass > 12){
+            } else if (finishMass > 12) {
                 return " Грузоподъемность свыше "
                         + (int) startMass + " тонн";
             } else {
