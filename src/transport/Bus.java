@@ -51,7 +51,7 @@ public class Bus extends Transport<DriverD> implements Competitive {
 
     @Override
     public void getDiagnosed() throws TransportTypeException {
-        throw new TransportTypeException("Автобусы диагностику проходить не должны");
+        throw new TransportTypeException(": автобусы диагностику проходить не должны");
     }
 
     @Override

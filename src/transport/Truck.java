@@ -45,7 +45,7 @@ public class Truck extends Transport<DriverC> implements Competitive {
 
     @Override
     public void getDiagnosed() {
-        System.out.println("Грузовому автомобилю необходимо пройти диагностику");
+        System.out.println(": необходимо пройти диагностику");
     }
 
     @Override

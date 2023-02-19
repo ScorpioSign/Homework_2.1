@@ -50,7 +50,7 @@ public class Car extends Transport<DriverB> implements Competitive {
 
     @Override
     public void getDiagnosed() {
-        System.out.println("Легковому автомобилю необходимо пройти диагностику");
+        System.out.println(": необходимо пройти диагностику");
     }
 
     @Override
