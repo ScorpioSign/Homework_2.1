@@ -1,14 +1,15 @@
 package transport;
 
 import java.util.List;
+import java.util.Set;
 
 public class Truck extends Transport<DriverC> implements Competitive {
     private LoadCapacity loadCapacity;
     private Type type;
 
 
-    public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity, List<Mechanic> mechanicList) {
-        super(brand, model, engineVolume, driver, mechanicList);
+    public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity, Set<Mechanic> mechanicSet) {
+        super(brand, model, engineVolume, driver, mechanicSet);
         this.loadCapacity = loadCapacity;
     }
 
@@ -69,7 +70,7 @@ public class Truck extends Transport<DriverC> implements Competitive {
     public String toString() {
         return "Марка: " + getBrand() + ", " +
                 " Модель: " + getModel() + ", " +
-                " Объем двигателя: " + getEngineVolume() + getDriver() + getLoadCapacity() + getMechanicList();
+                " Объем двигателя: " + getEngineVolume() + getDriver() + getLoadCapacity() + getMechanicSet();
     }
 
     enum LoadCapacity {
