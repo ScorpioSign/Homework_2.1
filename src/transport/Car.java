@@ -1,12 +1,14 @@
 package transport;
 
+import java.util.List;
+
 public class Car extends Transport<DriverB> implements Competitive {
     private BodyType bodyType;
     private Type type;
 
 
-    public Car(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
-        super(brand, model, engineVolume, driver);
+    public Car(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType, List<Mechanic> mechanicList) {
+        super(brand, model, engineVolume, driver,  mechanicList);
         this.bodyType = bodyType;
     }
 
@@ -68,7 +70,7 @@ public class Car extends Transport<DriverB> implements Competitive {
     public String toString() {
         return "Марка: " + getBrand() + ", " +
                 " Модель: " + getModel() + ", " +
-                " Объем двигателя: " + getEngineVolume() + getDriver() + getBodyType();
+                " Объем двигателя: " + getEngineVolume() + getDriver() + getBodyType() + getMechanicList();
     }
 
 

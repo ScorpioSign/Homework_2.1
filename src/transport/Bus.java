@@ -1,11 +1,11 @@
 package transport;
-
+import java.util.List;
 public class Bus extends Transport<DriverD> implements Competitive {
     private CapacityType capacityType;
     private Type type;
 
-    public Bus(String brand, String model, double engineVolume, DriverD driver, CapacityType capacityType) {
-        super(brand, model, engineVolume, driver);
+    public Bus(String brand, String model, double engineVolume, DriverD driver, CapacityType capacityType,List<Mechanic> mechanicList) {
+        super(brand, model, engineVolume, driver, mechanicList);
         this.capacityType = capacityType;
     }
 
@@ -68,7 +68,7 @@ public class Bus extends Transport<DriverD> implements Competitive {
     public String toString() {
         return "Марка: " + getBrand() + ", " +
                 " Модель: " + getModel() + ", " +
-                " Объем двигателя: " + getEngineVolume() + getDriver() + getCapacityType();
+                " Объем двигателя: " + getEngineVolume() + getDriver() + getCapacityType() + getMechanicList();
     }
 
     enum CapacityType {
