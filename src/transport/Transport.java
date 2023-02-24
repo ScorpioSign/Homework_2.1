@@ -2,6 +2,7 @@ package transport;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public abstract class Transport<T extends Driver> {
     private static String defaultBrand = "default";
@@ -11,28 +12,25 @@ public abstract class Transport<T extends Driver> {
     private final String model;
     private double engineVolume;
     private T driver;
-    private List<Mechanic> mechanicList;
-//    static{
-//        for (int i = 1; i>=5;i++ )
-//mechanicList.add("mechanic" )
-//    }
+    private Set<Mechanic> mechanicSet;
 
 
-    public Transport(String brand, String model, double engineVolume, T driver,List<Mechanic> mechanicList) {
+
+    public Transport(String brand, String model, double engineVolume, T driver, Set<Mechanic> mechanicSet) {
         this.brand = (isBrandEmpty(brand)) ? defaultBrand : brand;
         this.model = (isModelEmpty(model)) ? defaultModel : model;
         this.engineVolume = engineVolume <= 0 ? defaultEngineVolume : engineVolume;
         setDriver(driver);
-        this.mechanicList = mechanicList;
+        this.mechanicSet = mechanicSet;
 
     }
 
-    public List<Mechanic> getMechanicList() {
-        return mechanicList;
+    public Set<Mechanic> getMechanicSet() {
+        return mechanicSet;
     }
 
-    public void setMechanicList(List<Mechanic> mechanicList) {
-        this.mechanicList = mechanicList;
+    public void setMechanicSet(Set<Mechanic> mechanicSet) {
+        this.mechanicSet = mechanicSet;
     }
 
     public T getDriver() {
@@ -92,6 +90,6 @@ public abstract class Transport<T extends Driver> {
     public String toString() {
         return "Марка: " + brand + ", " +
                 " Модель: " + model + ", " +
-                " Объем двигателя: " + engineVolume + driver + getMechanicList();
+                " Объем двигателя: " + engineVolume + driver + getMechanicSet();
     }
 }
