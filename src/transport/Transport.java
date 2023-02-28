@@ -2,6 +2,7 @@ package transport;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public abstract class Transport<T extends Driver> {
@@ -14,6 +15,15 @@ public abstract class Transport<T extends Driver> {
     private T driver;
     private Set<Mechanic> mechanicSet;
 
+    public Transport(String brand, String model, double engineVolume, T driver) {
+        this.brand = (isBrandEmpty(brand)) ? defaultBrand : brand;
+        this.model = (isModelEmpty(model)) ? defaultModel : model;
+        this.engineVolume = engineVolume <= 0 ? defaultEngineVolume : engineVolume;
+        setDriver(driver);
+
+
+    }
+
 
 
     public Transport(String brand, String model, double engineVolume, T driver, Set<Mechanic> mechanicSet) {
@@ -24,6 +34,7 @@ public abstract class Transport<T extends Driver> {
         this.mechanicSet = mechanicSet;
 
     }
+
 
     public Set<Mechanic> getMechanicSet() {
         return mechanicSet;
@@ -90,6 +101,20 @@ public abstract class Transport<T extends Driver> {
     public String toString() {
         return "Марка: " + brand + ", " +
                 " Модель: " + model + ", " +
-                " Объем двигателя: " + engineVolume + driver + getMechanicSet();
+                " Объем двигателя: " + engineVolume + driver ;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport<?> transport = (Transport<?>) o;
+        return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(driver, transport.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, engineVolume, driver);
     }
 }
