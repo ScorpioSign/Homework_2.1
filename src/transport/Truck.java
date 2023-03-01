@@ -7,6 +7,11 @@ public class Truck extends Transport<DriverC> implements Competitive {
     private LoadCapacity loadCapacity;
     private Type type;
 
+    public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity) {
+        super(brand, model, engineVolume, driver);
+        this.loadCapacity = loadCapacity;
+    }
+
 
     public Truck(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity, Set<Mechanic> mechanicSet) {
         super(brand, model, engineVolume, driver, mechanicSet);
@@ -70,7 +75,7 @@ public class Truck extends Transport<DriverC> implements Competitive {
     public String toString() {
         return "Марка: " + getBrand() + ", " +
                 " Модель: " + getModel() + ", " +
-                " Объем двигателя: " + getEngineVolume() + getDriver() + getLoadCapacity() + getMechanicSet();
+                " Объем двигателя: " + getEngineVolume() + getDriver() + getLoadCapacity() ;
     }
 
     enum LoadCapacity {

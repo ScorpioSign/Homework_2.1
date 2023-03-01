@@ -8,6 +8,12 @@ public class Car extends Transport<DriverB> implements Competitive {
     private Type type;
 
 
+    public Car(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType) {
+        super(brand, model, engineVolume, driver);
+        this.bodyType = bodyType;
+    }
+
+
     public Car(String brand, String model, double engineVolume, DriverB driver, BodyType bodyType, Set<Mechanic> mechanicSet) {
         super(brand, model, engineVolume, driver,  mechanicSet);
         this.bodyType = bodyType;
@@ -71,7 +77,7 @@ public class Car extends Transport<DriverB> implements Competitive {
     public String toString() {
         return "Марка: " + getBrand() + ", " +
                 " Модель: " + getModel() + ", " +
-                " Объем двигателя: " + getEngineVolume() + getDriver() + getBodyType() + getMechanicSet();
+                " Объем двигателя: " + getEngineVolume() + getDriver() + getBodyType() ;
     }
 
 
